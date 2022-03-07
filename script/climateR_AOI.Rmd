@@ -12,6 +12,7 @@ output:
 library(climateR)
 library(AOI)
 library(ggplot2)
+library(leaflet.extras)
 ```
 
 <br>
@@ -43,6 +44,11 @@ logan <- geocode(location = "Logan UT", pt = TRUE)
 aoi_map(AOI = logan, returnMap = TRUE)
 ```
 
+#Interactively draw an Area of Interest
+```{r}
+#Interactively draw an Area of Interest
+aoi_draw()
+```
 
 
 <br>
