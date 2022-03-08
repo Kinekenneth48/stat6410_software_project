@@ -217,17 +217,24 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p><br></p>
-<div id="load-libraries" class="section level2">
-<h2>Load libraries</h2>
+<div id="load-libraries" class="section level3">
+<h3>1. Load libraries</h3>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjbGltYXRlUilcbmxpYnJhcnkoQU9JKVxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShsZWFmbGV0LmV4dHJhcylcbmBgYCJ9 -->
+<pre class="r"><code>library(climateR)
+library(AOI)
+library(ggplot2)
+library(leaflet.extras)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><br></p>
 </div>
 <div id="aoi-usage" class="section level2">
 <h2>AOI Usage</h2>
 <div id="geocode-locations" class="section level3">
-<h3>1. Geocode locations</h3>
+<h3>2. Geocode locations</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgcG9pbnQgZ2VvbWV0cnkgb2YgTG9nYW5cbmxvZ2FuIDwtIGdlb2NvZGUoXG4gIGxvY2F0aW9uID0gXCJMb2dhblwiLFxuICB6aXBjb2RlID0gTlVMTCwgZXZlbnQgPSBOVUxMLCBwdCA9IFRSVUUsIGJiID0gRkFMU0VcbilcbmBgYCJ9 -->
@@ -263,11 +270,10 @@ aoi_map(AOI = logan, returnMap = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>#Interactively draw an Area of Interest</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0ludGVyYWN0aXZlbHkgZHJhdyBhbiBBcmVhIG9mIEludGVyZXN0XG5hb2lfZHJhdygpXG5gYGAifQ== -->
-<pre class="r"><code>#Interactively draw an Area of Interest
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbnRlcmFjdGl2ZWx5IGRyYXcgYW4gQXJlYSBvZiBJbnRlcmVzdFxuYW9pX2RyYXcoKVxuYGBgIn0= -->
+<pre class="r"><code># Interactively draw an Area of Interest
 aoi_draw()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -275,12 +281,13 @@ aoi_draw()</code></pre>
 <p><br></p>
 </div>
 <div id="queries-for-state-and-county-boundaries" class="section level3">
-<h3>2. Queries for state and county boundaries</h3>
+<h3>3. Queries for state and county boundaries</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgQ2FjaGUgY291bnR5IGJvdW5kYXJpZXNcbmxvZ2FuX2FvaSA8LSBhb2lfZ2V0KHN0YXRlID0gXCJVVFwiLCBjb3VudHkgPSBcIkNhY2hlXCIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgQ2FjaGUgY291bnR5IGJvdW5kYXJpZXNcbmxvZ2FuX2FvaSA8LSBhb2lfZ2V0KHN0YXRlID0gXCJVVFwiLCBjb3VudHkgPSBcIkNhY2hlXCIpXG5sb2dhbl9hb2lcbmBgYCJ9 -->
 <pre class="r"><code># get Cache county boundaries
-logan_aoi &lt;- aoi_get(state = &quot;UT&quot;, county = &quot;Cache&quot;)</code></pre>
+logan_aoi &lt;- aoi_get(state = &quot;UT&quot;, county = &quot;Cache&quot;)
+logan_aoi</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -302,31 +309,35 @@ ut_aoi &lt;- aoi_get(state = &quot;UT&quot;, county = &quot;all&quot;)</code></p
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtYXAgYXJlYSBvZiBpbnRlcmVzdFxuYW9pX21hcChBT0kgPSB1dF9hb2ksIHJldHVybk1hcCA9IFRSVUUpXG5wbG90KHV0X2FvaSRnZW9tZXRyeSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtYXAgYXJlYSBvZiBpbnRlcmVzdFxuYW9pX21hcChBT0kgPSB1dF9hb2ksIHJldHVybk1hcCA9IFRSVUUpXG5gYGAifQ== -->
 <pre class="r"><code># map area of interest
-aoi_map(AOI = ut_aoi, returnMap = TRUE)
-plot(ut_aoi$geometry)</code></pre>
+aoi_map(AOI = ut_aoi, returnMap = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><br></p>
 </div>
+</div>
+<div id="climater-usage" class="section level2">
+<h2>climateR Usage</h2>
 <div id="point-based-time-series-1-site-1-variable-1d" class="section level3">
-<h3>3. Point Based Time Series (1 site , 1 variable) 1D</h3>
+<h3>4. Point Based Time Series (1 site , 1 variable) 1D</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9nYW5fdGVtcCA8LSBnZXRHcmlkTUVUKFxuICBBT0kgPSBnZW9jb2RlKGxvY2F0aW9uID0gXCJMb2dhbiBVVFwiLCBwdCA9IFRSVUUpLFxuICBwYXJhbSA9IFwidG1pblwiLCBzdGFydERhdGUgPSBcIjIwMjEtMDEtMDFcIixcbiAgZW5kRGF0ZSA9IFwiMjAyMS0xMi0zMVwiXG4pXG5gYGAifQ== -->
-<pre class="r"><code>logan_temp &lt;- getGridMET(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgbWluaW11bSB0ZW1wZXJhdHVyZSBmcm9tIFBSU0lNXG5sb2dhbl90ZW1wIDwtIGdldFBSSVNNKFxuICBBT0kgPSBnZW9jb2RlKGxvY2F0aW9uID0gXCJMb2dhbiBVVFwiLCBwdCA9IFRSVUUpLFxuICBwYXJhbSA9IFwidG1pblwiLCBzdGFydERhdGUgPSBcIjIwMjEtMDEtMDFcIixcbiAgZW5kRGF0ZSA9IFwiMjAyMS0xMi0zMVwiXG4pXG5oZWFkKGxvZ2FuX3RlbXApXG5gYGAifQ== -->
+<pre class="r"><code># get minimum temperature from PRSIM
+logan_temp &lt;- getPRISM(
   AOI = geocode(location = &quot;Logan UT&quot;, pt = TRUE),
   param = &quot;tmin&quot;, startDate = &quot;2021-01-01&quot;,
   endDate = &quot;2021-12-31&quot;
-)</code></pre>
+)
+head(logan_temp)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KFxuICBkYXRhID0gbG9nYW5fdGVtcCxcbiAgYWVzKHggPSBkYXRlLCB5ID0gdG1pbiwgY29sID0gdG1pbilcbikgK1xuICBnZW9tX2xpbmUoKSArXG4gIGxhYnMoXG4gICAgdGl0bGUgPSBcIk1pbmltdW0gVGVtcGVyYXR1cmUgaW4gTG9nYW4sIFV0YWhcIixcbiAgICB4ID0gXCJEYXRlXCIsIHkgPSBcIk1pbmltdW0gVGVtcGVyYXR1cmUgKGRlZ0spXCJcbiAgKSArXG4gIHN0YXRfc21vb3RoKGNvbCA9IFwicmVkXCIpICtcbiAgdGhlbWVfbGluZWRyYXcoKSArXG4gIHNjYWxlX2NvbG9yX3ZpcmlkaXNfYygpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KFxuICBkYXRhID0gbG9nYW5fdGVtcCxcbiAgYWVzKHggPSBkYXRlLCB5ID0gdG1pbiwgY29sID0gdG1pbilcbikgK1xuICBnZW9tX2xpbmUoKSArXG4gIGxhYnMoXG4gICAgdGl0bGUgPSBcIk1pbmltdW0gVGVtcGVyYXR1cmUgaW4gTG9nYW4sIFV0YWhcIixcbiAgICB4ID0gXCJEYXRlXCIsIHkgPSBcIk1pbmltdW0gVGVtcGVyYXR1cmUgKGRlZ0MpXCJcbiAgKSArXG4gIHN0YXRfc21vb3RoKGNvbCA9IFwicmVkXCIpICtcbiAgdGhlbWVfbGluZWRyYXcoKSArXG4gIHNjYWxlX2NvbG9yX3ZpcmlkaXNfYygpXG5gYGAifQ== -->
 <pre class="r"><code>ggplot(
   data = logan_temp,
   aes(x = date, y = tmin, col = tmin)
@@ -334,7 +345,7 @@ plot(ut_aoi$geometry)</code></pre>
   geom_line() +
   labs(
     title = &quot;Minimum Temperature in Logan, Utah&quot;,
-    x = &quot;Date&quot;, y = &quot;Minimum Temperature (degK)&quot;
+    x = &quot;Date&quot;, y = &quot;Minimum Temperature (degC)&quot;
   ) +
   stat_smooth(col = &quot;red&quot;) +
   theme_linedraw() +
@@ -344,27 +355,37 @@ plot(ut_aoi$geometry)</code></pre>
 <!-- rnb-text-begin -->
 <p><br></p>
 </div>
-<div id="multi-point-time-series-4-sites-1-variable" class="section level3">
-<h3>3. Multi Point Time Series (4 sites, 1 variable)</h3>
+<div id="multi-point-time-series-3-sites-2-variables" class="section level3">
+<h3>5. Multi Point Time Series (3 sites, 2 variables)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXRfYW9pIDwtIGFvaV9nZXQoc3RhdGUgPSBcIlVUXCIpXG5cbnNpdGVzIDwtIGdlb2NvZGUobG9jYXRpb24gPSBjKFxuICBcIkxvZ2FuIFVUXCIsIFwiU2FsdCBMYWtlIFVUXCIsIFwiQnJpZ2hhbSBVVFwiLFxuICBcIlByaWNlIFVUXCJcbiksIHB0ID0gVFJVRSlcbmFvaV9tYXAoQU9JID0gc2l0ZXMsIHJldHVybk1hcCA9IFRSVUUpXG5cblxudXRfcHB0IDwtIGdldEdyaWRNRVQoXG4gIEFPSSA9IHNpdGVzLFxuICBwYXJhbSA9IFwicHJjcFwiLCBzdGFydERhdGUgPSBcIjIwMjEtMDEtMDFcIixcbiAgZW5kRGF0ZSA9IFwiMjAyMS0wMS0zMVwiXG4pXG5cbnNpdGVfZXh0cmFjdCA8LSBleHRyYWN0X3NpdGVzKHV0X3BwdCwgc2l0ZXMsIFwicmVxdWVzdFwiKVxuXG5oZWFkKHNpdGVfZXh0cmFjdClcbmBgYCJ9 -->
-<pre class="r"><code>ut_aoi &lt;- aoi_get(state = &quot;UT&quot;)
-
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgcG9pbnQgb2YgMyBzaXRlc1xuc2l0ZXMgPC0gZ2VvY29kZShsb2NhdGlvbiA9IGMoXG4gIFwiTG9nYW4gVVRcIiwgXCJTYWx0IExha2UgVVRcIiwgXCJCcmlnaGFtIFVUXCJcbiksIHB0ID0gVFJVRSlcblxuYW9pX21hcChBT0kgPSBzaXRlcywgcmV0dXJuTWFwID0gVFJVRSlcbmBgYCJ9 -->
+<pre class="r"><code># get point of 3 sites
 sites &lt;- geocode(location = c(
-  &quot;Logan UT&quot;, &quot;Salt Lake UT&quot;, &quot;Brigham UT&quot;,
-  &quot;Price UT&quot;
+  &quot;Logan UT&quot;, &quot;Salt Lake UT&quot;, &quot;Brigham UT&quot;
 ), pt = TRUE)
-aoi_map(AOI = sites, returnMap = TRUE)
 
-
-ut_ppt &lt;- getGridMET(
+aoi_map(AOI = sites, returnMap = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgcHJlY2lwaXRhdGlvbiBvZiBVdGFoXG51dF9wcHRfdG1pbiA8LSBnZXRHcmlkTUVUKFxuICBBT0kgPSBzaXRlcyxcbiAgcGFyYW0gPSBjKFwicHJjcFwiLCBcInRtaW5cIiksIHN0YXJ0RGF0ZSA9IFwiMjAyMS0wMS0wMVwiLFxuICBlbmREYXRlID0gXCIyMDIxLTAxLTMxXCJcbilcbmBgYCJ9 -->
+<pre class="r"><code># get precipitation of Utah
+ut_ppt_tmin &lt;- getGridMET(
   AOI = sites,
-  param = &quot;prcp&quot;, startDate = &quot;2021-01-01&quot;,
+  param = c(&quot;prcp&quot;, &quot;tmin&quot;), startDate = &quot;2021-01-01&quot;,
   endDate = &quot;2021-01-31&quot;
-)
-
-site_extract &lt;- extract_sites(ut_ppt, sites, &quot;request&quot;)
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBleHRyYWN0IHByZWNpcGl0YXRpb24gYW5kIHRlbXBlcmF0dXJlIGZvciBzcGVjaWZpZWQgc2l0ZXMgZnJvbSB0aGUgcmFzdGVyIHN0YWNrXG5zaXRlX2V4dHJhY3QgPC0gZXh0cmFjdF9zaXRlcyh1dF9wcHRfdG1pbiwgc2l0ZXMsIFwicmVxdWVzdFwiKVxuXG5oZWFkKHNpdGVfZXh0cmFjdClcbmBgYCJ9 -->
+<pre class="r"><code># extract precipitation and temperature for specified sites from the raster stack
+site_extract &lt;- extract_sites(ut_ppt_tmin, sites, &quot;request&quot;)
 
 head(site_extract)</code></pre>
 <!-- rnb-source-end -->
@@ -373,33 +394,55 @@ head(site_extract)</code></pre>
 <p><br></p>
 </div>
 <div id="single-layer-2d-1-variable-1-day" class="section level3">
-<h3>4. Single Layer (2D) (1 variable, 1 day)</h3>
+<h3>6. Single Layer (2D) (1 variable, 1 day)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueT1zdHIodXRfdGVtcF9tYXgsIG1heC5sZXZlbCA9IDIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>y=str(ut_temp_max, max.level = 2)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXRfdGVtcF9tYXggPC0gZ2V0UFJJU00oXG4gIEFPSSA9IGFvaV9nZXQoc3RhdGUgPSBcIlVUXCIpLCBwYXJhbSA9IFwidG1heFwiLFxuICBzdGFydERhdGUgPSBcIjIwMDAtMDUtMDFcIlxuKVxuXG5wbG90KHV0X3RlbXBfbWF4JHByaXNtX3RtYXgpXG5wbG90KGFvaV9nZXQoc3RhdGUgPSBcIlVUXCIpJGdlb21ldHJ5LCBhZGQgPSBUUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>ut_temp_max &lt;- getPRISM(
+  AOI = aoi_get(state = &quot;UT&quot;), param = &quot;tmax&quot;,
+  startDate = &quot;2000-05-01&quot;
+)
+
+plot(ut_temp_max$prism_tmax)
+plot(aoi_get(state = &quot;UT&quot;)$geometry, add = TRUE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxXG4gJCBwcmlzbV90bWF4OkZvcm1hbCBjbGFzcyAnUmFzdGVyU3RhY2snIFtwYWNrYWdlIFwicmFzdGVyXCJdIHdpdGggMTEgc2xvdHNcbiJ9 -->
-<pre><code>List of 1
- $ prism_tmax:Formal class &#39;RasterStack&#39; [package &quot;raster&quot;] with 11 slots</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p><br></p>
 </div>
-<div id="multi-layer-2-variables-1-day-michigan-2d" class="section level3">
-<h3>4. Multi-layer (2 variables, 1 day, Michigan) 2D</h3>
-<p><br> ### 4. Multiple Layer (3D) (1 variable, 5 days)</p>
-</div>
-<div id="multi-cube-4d-3-variables-3-day-washington-state" class="section level3">
-<h3>4. Multi-Cube 4D (3 variables, 3 day, Washington State)</h3>
-<p>#Fast Zonal Statistics with exactextractr</p>
-<p>plot(rain<span class="math inline">\(prcp) plot(aoi_get(state = &quot;CA&quot;)\)</span>geometry, add = TRUE)</p>
+<div id="multi-layer-2-variables-1-day-2d" class="section level3">
+<h3>7. Multi-layer (2 variables, 1 day) 2D</h3>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHMgPC0gZ2V0R3JpZE1FVChhb2lfZ2V0KHN0YXRlID0gXCJVVFwiKSxcbiAgcGFyYW0gPSBjKFwidG1heFwiLCBcInRtaW5cIiksXG4gIHN0YXJ0RGF0ZSA9IFwiMjAwMC0wNS0wMVwiXG4pXG5wbG90KHN0YWNrKGdyaWRzKSwgbWFpbiA9IGMoXCJNaW4gVGVtcGVyYXR1cmVcIiwgXCJNYXggVGVtcGVydHVyZVwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>grids &lt;- getGridMET(aoi_get(state = &quot;UT&quot;),
+  param = c(&quot;tmax&quot;, &quot;tmin&quot;),
+  startDate = &quot;2000-05-01&quot;
+)
+plot(stack(grids), main = c(&quot;Min Temperature&quot;, &quot;Max Temperture&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><br></p>
+</div>
+<div id="multi-cube-4d-3-variables-3-day" class="section level3">
+<h3>8. Multi-Cube 4D (3 variables, 3 day)</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHMgPC0gZ2V0R3JpZE1FVChhb2lfZ2V0KHN0YXRlID0gXCJVVFwiKSxcbiAgcGFyYW0gPSBjKFwidG1heFwiLCBcInByY3BcIiwgXCJzcmFkXCIpLFxuICBzdGFydERhdGUgPSBcIjIwMTgtMTAtMTBcIixcbiAgZW5kRGF0ZSA9IFwiMjAxOC0xMC0xMVwiXG4pXG5cbnBsb3Qoc3RhY2soZ3JpZHMpKVxuYGBgIn0= -->
+<pre class="r"><code>grids &lt;- getGridMET(aoi_get(state = &quot;UT&quot;),
+  param = c(&quot;tmax&quot;, &quot;prcp&quot;, &quot;srad&quot;),
+  startDate = &quot;2018-10-10&quot;,
+  endDate = &quot;2018-10-11&quot;
+)
+
+plot(stack(grids))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVXNpbmcgdGhlIGNsaW1hdGVSIGFuZCBBT0kgcGFja2FnZSIKYXV0aG9yOiAiS2VubmV0aCBQb21leWllLCBTY291dCBKYXJtYW4sIFBhdWwgR2FvbmEtUGFydGlkYSIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKLS0tCgo8YnI+CgojIyBMb2FkIGxpYnJhcmllcwpgYGB7ciBpbmNsdWRlPUZBTFNFfQpsaWJyYXJ5KGNsaW1hdGVSKQpsaWJyYXJ5KEFPSSkKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KGxlYWZsZXQuZXh0cmFzKQpgYGAKCjxicj4KCiMjIEFPSSBVc2FnZQojIyMgMS4gR2VvY29kZSBsb2NhdGlvbnMgCmBgYHtyfQojIGdldCBwb2ludCBnZW9tZXRyeSBvZiBMb2dhbgpsb2dhbiA8LSBnZW9jb2RlKAogIGxvY2F0aW9uID0gIkxvZ2FuIiwKICB6aXBjb2RlID0gTlVMTCwgZXZlbnQgPSBOVUxMLCBwdCA9IFRSVUUsIGJiID0gRkFMU0UKKQpgYGAKCgpgYGB7cn0KIyBjaGVjayBpZiB0aGUgbG9jYXRpb24gaXMgcmlnaHQKYW9pX21hcChBT0kgPSBsb2dhbiwgcmV0dXJuTWFwID0gVFJVRSkKYGBgCgoKYGBge3J9CiMgdXNlIGNvcnJlY3QgbG9jYXRpb24gbmFtZQpsb2dhbiA8LSBnZW9jb2RlKGxvY2F0aW9uID0gIkxvZ2FuIFVUIiwgcHQgPSBUUlVFKQpgYGAKCmBgYHtyfQojIGNoZWNrIGlmIHRoZSBsb2NhdGlvbiBpcyByaWdodAphb2lfbWFwKEFPSSA9IGxvZ2FuLCByZXR1cm5NYXAgPSBUUlVFKQpgYGAKCiNJbnRlcmFjdGl2ZWx5IGRyYXcgYW4gQXJlYSBvZiBJbnRlcmVzdApgYGB7cn0KI0ludGVyYWN0aXZlbHkgZHJhdyBhbiBBcmVhIG9mIEludGVyZXN0CmFvaV9kcmF3KCkKYGBgCgoKPGJyPgoKIyMjIDIuIFF1ZXJpZXMgZm9yIHN0YXRlIGFuZCBjb3VudHkgYm91bmRhcmllcwpgYGB7cn0KIyBnZXQgQ2FjaGUgY291bnR5IGJvdW5kYXJpZXMKbG9nYW5fYW9pIDwtIGFvaV9nZXQoc3RhdGUgPSAiVVQiLCBjb3VudHkgPSAiQ2FjaGUiKQpgYGAKCgpgYGB7cn0KIyBtYXAgYXJlYSBvZiBpbnRlcmVzdAphb2lfbWFwKEFPSSA9IGxvZ2FuX2FvaSwgcmV0dXJuTWFwID0gVFJVRSkKYGBgCgpgYGB7cn0KIyBnZXQgVXRhaCBzdGF0ZSBib3VuZGFyaWVzCnV0X2FvaSA8LSBhb2lfZ2V0KHN0YXRlID0gIlVUIiwgY291bnR5ID0gImFsbCIpCmBgYAoKCmBgYHtyfQojIG1hcCBhcmVhIG9mIGludGVyZXN0CmFvaV9tYXAoQU9JID0gdXRfYW9pLCByZXR1cm5NYXAgPSBUUlVFKQpwbG90KHV0X2FvaSRnZW9tZXRyeSkKYGBgCgoKCgoKCgo8YnI+CgojIyMgMy4gUG9pbnQgQmFzZWQgVGltZSBTZXJpZXMgKDEgc2l0ZSAsIDEgdmFyaWFibGUpIDFECmBgYHtyfQpsb2dhbl90ZW1wIDwtIGdldEdyaWRNRVQoCiAgQU9JID0gZ2VvY29kZShsb2NhdGlvbiA9ICJMb2dhbiBVVCIsIHB0ID0gVFJVRSksCiAgcGFyYW0gPSAidG1pbiIsIHN0YXJ0RGF0ZSA9ICIyMDIxLTAxLTAxIiwKICBlbmREYXRlID0gIjIwMjEtMTItMzEiCikKYGBgCgpgYGB7cn0KZ2dwbG90KAogIGRhdGEgPSBsb2dhbl90ZW1wLAogIGFlcyh4ID0gZGF0ZSwgeSA9IHRtaW4sIGNvbCA9IHRtaW4pCikgKwogIGdlb21fbGluZSgpICsKICBsYWJzKAogICAgdGl0bGUgPSAiTWluaW11bSBUZW1wZXJhdHVyZSBpbiBMb2dhbiwgVXRhaCIsCiAgICB4ID0gIkRhdGUiLCB5ID0gIk1pbmltdW0gVGVtcGVyYXR1cmUgKGRlZ0spIgogICkgKwogIHN0YXRfc21vb3RoKGNvbCA9ICJyZWQiKSArCiAgdGhlbWVfbGluZWRyYXcoKSArCiAgc2NhbGVfY29sb3JfdmlyaWRpc19jKCkKYGBgCgoKPGJyPgoKIyMjIDMuIE11bHRpIFBvaW50IFRpbWUgU2VyaWVzICg0IHNpdGVzLCAxIHZhcmlhYmxlKQpgYGB7cn0KdXRfYW9pIDwtIGFvaV9nZXQoc3RhdGUgPSAiVVQiKQoKc2l0ZXMgPC0gZ2VvY29kZShsb2NhdGlvbiA9IGMoCiAgIkxvZ2FuIFVUIiwgIlNhbHQgTGFrZSBVVCIsICJCcmlnaGFtIFVUIiwKICAiUHJpY2UgVVQiCiksIHB0ID0gVFJVRSkKYW9pX21hcChBT0kgPSBzaXRlcywgcmV0dXJuTWFwID0gVFJVRSkKCgp1dF9wcHQgPC0gZ2V0R3JpZE1FVCgKICBBT0kgPSBzaXRlcywKICBwYXJhbSA9ICJwcmNwIiwgc3RhcnREYXRlID0gIjIwMjEtMDEtMDEiLAogIGVuZERhdGUgPSAiMjAyMS0wMS0zMSIKKQoKc2l0ZV9leHRyYWN0IDwtIGV4dHJhY3Rfc2l0ZXModXRfcHB0LCBzaXRlcywgInJlcXVlc3QiKQoKaGVhZChzaXRlX2V4dHJhY3QpCmBgYAoKPGJyPgoKIyMjIDQuIFNpbmdsZSBMYXllciAoMkQpICgxIHZhcmlhYmxlLCAxIGRheSkKYGBge3J9CnV0X3RlbXBfbWF4ID0gZ2V0UFJJU00oQU9JID0gIGFvaV9nZXQoc3RhdGUgPSAiVVQiKSwgcGFyYW0gPSAidG1heCIsCiAgICAgICAgICAgICAgc3RhcnREYXRlID0gIjIwMDAtMDUtMDEiKQoKeT1zdHIodXRfdGVtcF9tYXgsIG1heC5sZXZlbCA9IDIpCnBsb3QodXRfdGVtcF9tYXgkcHJpc21fdG1heCkKcGxvdChhb2lfZ2V0KHN0YXRlID0gIlVUIikkZ2VvbWV0cnksIGFkZCA9IFRSVUUpCmBgYAoKIyMjIDQuIE11bHRpLWxheWVyICgyIHZhcmlhYmxlcywgMSBkYXksIE1pY2hpZ2FuKSAyRAoKPGJyPgojIyMgNC4gTXVsdGlwbGUgTGF5ZXIgKDNEKSAoMSB2YXJpYWJsZSwgNSBkYXlzKQoKIyMjIDQuIE11bHRpLUN1YmUgNEQgKDMgdmFyaWFibGVzLCAzIGRheSwgV2FzaGluZ3RvbiBTdGF0ZSkKCgojRmFzdCBab25hbCBTdGF0aXN0aWNzIHdpdGggZXhhY3RleHRyYWN0cgoKcGxvdChyYWluJHByY3ApCnBsb3QoYW9pX2dldChzdGF0ZSA9ICJDQSIpJGdlb21ldHJ5LCBhZGQgPSBUUlVFKQ==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVXNpbmcgdGhlIGNsaW1hdGVSIGFuZCBBT0kgcGFja2FnZSIKYXV0aG9yOiAiS2VubmV0aCBQb21leWllLCBTY291dCBKYXJtYW4sIFBhdWwgR2FvbmEtUGFydGlkYSIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKLS0tCgoKCiMjIyAxLiBMb2FkIGxpYnJhcmllcwpgYGB7ciB9CmxpYnJhcnkoY2xpbWF0ZVIpCmxpYnJhcnkoQU9JKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkobGVhZmxldC5leHRyYXMpCmBgYAoKPGJyPgoKIyMgQU9JIFVzYWdlCiMjIyAyLiBHZW9jb2RlIGxvY2F0aW9ucyAKYGBge3J9CiMgZ2V0IHBvaW50IGdlb21ldHJ5IG9mIExvZ2FuCmxvZ2FuIDwtIGdlb2NvZGUoCiAgbG9jYXRpb24gPSAiTG9nYW4iLAogIHppcGNvZGUgPSBOVUxMLCBldmVudCA9IE5VTEwsIHB0ID0gVFJVRSwgYmIgPSBGQUxTRQopCmBgYAoKCmBgYHtyfQojIGNoZWNrIGlmIHRoZSBsb2NhdGlvbiBpcyByaWdodAphb2lfbWFwKEFPSSA9IGxvZ2FuLCByZXR1cm5NYXAgPSBUUlVFKQpgYGAKCgpgYGB7cn0KIyB1c2UgY29ycmVjdCBsb2NhdGlvbiBuYW1lCmxvZ2FuIDwtIGdlb2NvZGUobG9jYXRpb24gPSAiTG9nYW4gVVQiLCBwdCA9IFRSVUUpCmBgYAoKYGBge3J9CiMgY2hlY2sgaWYgdGhlIGxvY2F0aW9uIGlzIHJpZ2h0CmFvaV9tYXAoQU9JID0gbG9nYW4sIHJldHVybk1hcCA9IFRSVUUpCmBgYAoKCmBgYHtyfQojIEludGVyYWN0aXZlbHkgZHJhdyBhbiBBcmVhIG9mIEludGVyZXN0CmFvaV9kcmF3KCkKYGBgCgoKPGJyPgoKIyMjIDMuIFF1ZXJpZXMgZm9yIHN0YXRlIGFuZCBjb3VudHkgYm91bmRhcmllcwpgYGB7cn0KIyBnZXQgQ2FjaGUgY291bnR5IGJvdW5kYXJpZXMKbG9nYW5fYW9pIDwtIGFvaV9nZXQoc3RhdGUgPSAiVVQiLCBjb3VudHkgPSAiQ2FjaGUiKQpsb2dhbl9hb2kKYGBgCgoKYGBge3J9CiMgbWFwIGFyZWEgb2YgaW50ZXJlc3QKYW9pX21hcChBT0kgPSBsb2dhbl9hb2ksIHJldHVybk1hcCA9IFRSVUUpCmBgYAoKYGBge3J9CiMgZ2V0IFV0YWggc3RhdGUgYm91bmRhcmllcwp1dF9hb2kgPC0gYW9pX2dldChzdGF0ZSA9ICJVVCIsIGNvdW50eSA9ICJhbGwiKQpgYGAKCgpgYGB7cn0KIyBtYXAgYXJlYSBvZiBpbnRlcmVzdAphb2lfbWFwKEFPSSA9IHV0X2FvaSwgcmV0dXJuTWFwID0gVFJVRSkKYGBgCgoKCjxicj4KCiMjIGNsaW1hdGVSIFVzYWdlCiMjIyA0LiBQb2ludCBCYXNlZCBUaW1lIFNlcmllcyAoMSBzaXRlICwgMSB2YXJpYWJsZSkgMUQKYGBge3J9CiMgZ2V0IG1pbmltdW0gdGVtcGVyYXR1cmUgZnJvbSBQUlNJTQpsb2dhbl90ZW1wIDwtIGdldFBSSVNNKAogIEFPSSA9IGdlb2NvZGUobG9jYXRpb24gPSAiTG9nYW4gVVQiLCBwdCA9IFRSVUUpLAogIHBhcmFtID0gInRtaW4iLCBzdGFydERhdGUgPSAiMjAyMS0wMS0wMSIsCiAgZW5kRGF0ZSA9ICIyMDIxLTEyLTMxIgopCmhlYWQobG9nYW5fdGVtcCkKYGBgCgpgYGB7cn0KZ2dwbG90KAogIGRhdGEgPSBsb2dhbl90ZW1wLAogIGFlcyh4ID0gZGF0ZSwgeSA9IHRtaW4sIGNvbCA9IHRtaW4pCikgKwogIGdlb21fbGluZSgpICsKICBsYWJzKAogICAgdGl0bGUgPSAiTWluaW11bSBUZW1wZXJhdHVyZSBpbiBMb2dhbiwgVXRhaCIsCiAgICB4ID0gIkRhdGUiLCB5ID0gIk1pbmltdW0gVGVtcGVyYXR1cmUgKGRlZ0MpIgogICkgKwogIHN0YXRfc21vb3RoKGNvbCA9ICJyZWQiKSArCiAgdGhlbWVfbGluZWRyYXcoKSArCiAgc2NhbGVfY29sb3JfdmlyaWRpc19jKCkKYGBgCgoKPGJyPgoKIyMjIDUuIE11bHRpIFBvaW50IFRpbWUgU2VyaWVzICgzIHNpdGVzLCAyIHZhcmlhYmxlcykKYGBge3J9CiMgZ2V0IHBvaW50IG9mIDMgc2l0ZXMKc2l0ZXMgPC0gZ2VvY29kZShsb2NhdGlvbiA9IGMoCiAgIkxvZ2FuIFVUIiwgIlNhbHQgTGFrZSBVVCIsICJCcmlnaGFtIFVUIgopLCBwdCA9IFRSVUUpCgphb2lfbWFwKEFPSSA9IHNpdGVzLCByZXR1cm5NYXAgPSBUUlVFKQpgYGAKCmBgYHtyfQojIGdldCBwcmVjaXBpdGF0aW9uIG9mIFV0YWgKdXRfcHB0X3RtaW4gPC0gZ2V0R3JpZE1FVCgKICBBT0kgPSBzaXRlcywKICBwYXJhbSA9IGMoInByY3AiLCAidG1pbiIpLCBzdGFydERhdGUgPSAiMjAyMS0wMS0wMSIsCiAgZW5kRGF0ZSA9ICIyMDIxLTAxLTMxIgopCmBgYAoKYGBge3J9CiMgZXh0cmFjdCBwcmVjaXBpdGF0aW9uIGFuZCB0ZW1wZXJhdHVyZSBmb3Igc3BlY2lmaWVkIHNpdGVzIGZyb20gdGhlIHJhc3RlciBzdGFjawpzaXRlX2V4dHJhY3QgPC0gZXh0cmFjdF9zaXRlcyh1dF9wcHRfdG1pbiwgc2l0ZXMsICJyZXF1ZXN0IikKCmhlYWQoc2l0ZV9leHRyYWN0KQpgYGAKCjxicj4KCiMjIyA2LiBTaW5nbGUgTGF5ZXIgKDJEKSAoMSB2YXJpYWJsZSwgMSBkYXkpCmBgYHtyfQp1dF90ZW1wX21heCA8LSBnZXRQUklTTSgKICBBT0kgPSBhb2lfZ2V0KHN0YXRlID0gIlVUIiksIHBhcmFtID0gInRtYXgiLAogIHN0YXJ0RGF0ZSA9ICIyMDAwLTA1LTAxIgopCgpwbG90KHV0X3RlbXBfbWF4JHByaXNtX3RtYXgpCnBsb3QoYW9pX2dldChzdGF0ZSA9ICJVVCIpJGdlb21ldHJ5LCBhZGQgPSBUUlVFKQpgYGAKPGJyPgoKIyMjIDcuIE11bHRpLWxheWVyICgyIHZhcmlhYmxlcywgMSBkYXkpIDJECmBgYHtyfQpncmlkcyA8LSBnZXRHcmlkTUVUKGFvaV9nZXQoc3RhdGUgPSAiVVQiKSwKICBwYXJhbSA9IGMoInRtYXgiLCAidG1pbiIpLAogIHN0YXJ0RGF0ZSA9ICIyMDAwLTA1LTAxIgopCnBsb3Qoc3RhY2soZ3JpZHMpLCBtYWluID0gYygiTWluIFRlbXBlcmF0dXJlIiwgIk1heCBUZW1wZXJ0dXJlIikpCmBgYAoKPGJyPgoKIyMjIDguIE11bHRpLUN1YmUgNEQgKDMgdmFyaWFibGVzLCAzIGRheSkKYGBge3J9CmdyaWRzIDwtIGdldEdyaWRNRVQoYW9pX2dldChzdGF0ZSA9ICJVVCIpLAogIHBhcmFtID0gYygidG1heCIsICJwcmNwIiwgInNyYWQiKSwKICBzdGFydERhdGUgPSAiMjAxOC0xMC0xMCIsCiAgZW5kRGF0ZSA9ICIyMDE4LTEwLTExIgopCgpwbG90KHN0YWNrKGdyaWRzKSkKYGBgCg==</div>
 
 
 

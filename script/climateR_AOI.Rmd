@@ -5,10 +5,10 @@ output:
   html_notebook: default
 ---
 
-<br>
 
-## Load libraries
-```{r include=FALSE}
+
+### 1. Load libraries
+```{r }
 library(climateR)
 library(AOI)
 library(ggplot2)
@@ -18,7 +18,7 @@ library(leaflet.extras)
 <br>
 
 ## AOI Usage
-### 1. Geocode locations 
+### 2. Geocode locations 
 ```{r}
 # get point geometry of Logan
 logan <- geocode(
@@ -44,19 +44,20 @@ logan <- geocode(location = "Logan UT", pt = TRUE)
 aoi_map(AOI = logan, returnMap = TRUE)
 ```
 
-#Interactively draw an Area of Interest
+
 ```{r}
-#Interactively draw an Area of Interest
+# Interactively draw an Area of Interest
 aoi_draw()
 ```
 
 
 <br>
 
-### 2. Queries for state and county boundaries
+### 3. Queries for state and county boundaries
 ```{r}
 # get Cache county boundaries
 logan_aoi <- aoi_get(state = "UT", county = "Cache")
+logan_aoi
 ```
 
 
@@ -74,24 +75,22 @@ ut_aoi <- aoi_get(state = "UT", county = "all")
 ```{r}
 # map area of interest
 aoi_map(AOI = ut_aoi, returnMap = TRUE)
-plot(ut_aoi$geometry)
 ```
-
-
-
-
 
 
 
 <br>
 
-### 3. Point Based Time Series (1 site , 1 variable) 1D
+## climateR Usage
+### 4. Point Based Time Series (1 site , 1 variable) 1D
 ```{r}
-logan_temp <- getGridMET(
+# get minimum temperature from PRSIM
+logan_temp <- getPRISM(
   AOI = geocode(location = "Logan UT", pt = TRUE),
   param = "tmin", startDate = "2021-01-01",
   endDate = "2021-12-31"
 )
+head(logan_temp)
 ```
 
 ```{r}
@@ -102,7 +101,7 @@ ggplot(
   geom_line() +
   labs(
     title = "Minimum Temperature in Logan, Utah",
-    x = "Date", y = "Minimum Temperature (degK)"
+    x = "Date", y = "Minimum Temperature (degC)"
   ) +
   stat_smooth(col = "red") +
   theme_linedraw() +
@@ -112,49 +111,64 @@ ggplot(
 
 <br>
 
-### 3. Multi Point Time Series (4 sites, 1 variable)
+### 5. Multi Point Time Series (3 sites, 2 variables)
 ```{r}
-ut_aoi <- aoi_get(state = "UT")
-
+# get point of 3 sites
 sites <- geocode(location = c(
-  "Logan UT", "Salt Lake UT", "Brigham UT",
-  "Price UT"
+  "Logan UT", "Salt Lake UT", "Brigham UT"
 ), pt = TRUE)
+
 aoi_map(AOI = sites, returnMap = TRUE)
+```
 
-
-ut_ppt <- getGridMET(
+```{r}
+# get precipitation of Utah
+ut_ppt_tmin <- getGridMET(
   AOI = sites,
-  param = "prcp", startDate = "2021-01-01",
+  param = c("prcp", "tmin"), startDate = "2021-01-01",
   endDate = "2021-01-31"
 )
+```
 
-site_extract <- extract_sites(ut_ppt, sites, "request")
+```{r}
+# extract precipitation and temperature for specified sites from the raster stack
+site_extract <- extract_sites(ut_ppt_tmin, sites, "request")
 
 head(site_extract)
 ```
 
 <br>
 
-### 4. Single Layer (2D) (1 variable, 1 day)
+### 6. Single Layer (2D) (1 variable, 1 day)
 ```{r}
-ut_temp_max = getPRISM(AOI =  aoi_get(state = "UT"), param = "tmax",
-              startDate = "2000-05-01")
+ut_temp_max <- getPRISM(
+  AOI = aoi_get(state = "UT"), param = "tmax",
+  startDate = "2000-05-01"
+)
 
-y=str(ut_temp_max, max.level = 2)
 plot(ut_temp_max$prism_tmax)
 plot(aoi_get(state = "UT")$geometry, add = TRUE)
 ```
+<br>
 
-### 4. Multi-layer (2 variables, 1 day, Michigan) 2D
+### 7. Multi-layer (2 variables, 1 day) 2D
+```{r}
+grids <- getGridMET(aoi_get(state = "UT"),
+  param = c("tmax", "tmin"),
+  startDate = "2000-05-01"
+)
+plot(stack(grids), main = c("Min Temperature", "Max Temperture"))
+```
 
 <br>
-### 4. Multiple Layer (3D) (1 variable, 5 days)
 
-### 4. Multi-Cube 4D (3 variables, 3 day, Washington State)
+### 8. Multi-Cube 4D (3 variables, 3 day)
+```{r}
+grids <- getGridMET(aoi_get(state = "UT"),
+  param = c("tmax", "prcp", "srad"),
+  startDate = "2018-10-10",
+  endDate = "2018-10-11"
+)
 
-
-#Fast Zonal Statistics with exactextractr
-
-plot(rain$prcp)
-plot(aoi_get(state = "CA")$geometry, add = TRUE)
+plot(stack(grids))
+```
