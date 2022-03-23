@@ -48,9 +48,9 @@ aoi_map(AOI = logan, returnMap = TRUE)
 
 ```{r}
 # LIVE EXAMPLE
- <- geocode(event = "Jose Cuervo", pt = TRUE)
+ <- geocode(event = "", pt = TRUE)
 
-aoi_map()
+aoi_map(,returnMap = TRUE)
 ```
 
 ```{r}
@@ -197,8 +197,4 @@ grids <- getGridMET(aoi_get(state = "UT"),
 plot(stack(grids))
 ```
 
-```{r}
-# use correct location name
-JC <- geocode(event = "Jose Cuervo", pt = TRUE)
-aoi_map(JC, returnMap = TRUE)
-```
+
