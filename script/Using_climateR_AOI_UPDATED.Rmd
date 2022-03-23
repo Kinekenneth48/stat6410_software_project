@@ -90,19 +90,6 @@ ut_aoi <- aoi_get(state = "UT", county = "all")
 aoi_map(AOI = ut_aoi, returnMap = TRUE)
 ```
 
-
-```{r}
-# get Utah state boundaries
-ut_aoi <- aoi_get(state = "UT")
-```
-
-
-```{r}
-# map area of interest
-aoi_map(AOI = ut_aoi, returnMap = TRUE)
-```
-
-
 <br>
 
 ## climateR Usage
