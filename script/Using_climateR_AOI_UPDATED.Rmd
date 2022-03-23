@@ -1,0 +1,204 @@
+---
+title: "Using the climateR and AOI package"
+author: "Kenneth Pomeyie, Scout Jarman, Paul Gaona-Partida"
+output:
+  html_notebook: default
+---
+
+
+
+### 1. Load libraries
+```{r }
+library(sf)
+library(climateR)
+library(AOI)
+library(ggplot2)
+library(leaflet.extras)
+```
+
+<br>
+
+## AOI Usage
+### 2. Geocode locations 
+```{r}
+# get point geometry of Logan
+logan <- geocode(
+  location = "Logan",
+  zipcode = NULL, event = NULL, pt = TRUE, bb = FALSE
+)
+```
+
+
+```{r}
+# check if the location is right
+aoi_map(AOI = logan, returnMap = TRUE)
+```
+
+
+```{r}
+# use correct location name
+logan <- geocode(location = "Logan UT", pt = TRUE)
+```
+
+
+```{r}
+# check if the location is right
+aoi_map(AOI = logan, returnMap = TRUE)
+```
+
+```{r}
+# LIVE EXAMPLE
+ <- geocode(event = "Jose Cuervo", pt = TRUE)
+
+aoi_map()
+```
+
+```{r}
+# Interactively draw an Area of Interest
+aoi_draw()
+
+test <- sf::st_read("aoi_draw/test.gpkg")
+
+aoi_map(test, returnMap = TRUE)
+
+```
+
+
+<br>
+
+### 3. Queries for state and county boundaries
+```{r}
+# get Cache county boundaries
+cache_aoi <- aoi_get(state = "UT", county = "Cache")
+cache_aoi
+```
+
+
+```{r}
+# map area of interest
+aoi_map(AOI = logan_aoi, returnMap = TRUE)
+```
+
+```{r}
+# get Utah state boundaries
+ut_aoi <- aoi_get(state = "UT", county = "all")
+```
+
+
+```{r}
+# map area of interest
+aoi_map(AOI = ut_aoi, returnMap = TRUE)
+```
+
+
+```{r}
+# get Utah state boundaries
+ut_aoi <- aoi_get(state = "UT")
+```
+
+
+```{r}
+# map area of interest
+aoi_map(AOI = ut_aoi, returnMap = TRUE)
+```
+
+
+<br>
+
+## climateR Usage
+### 4. Point Based Time Series (1 site , 1 variable) 1D
+```{r}
+# get minimum temperature from PRSIM
+logan_temp <- getPRISM(
+  AOI = geocode(location = "Logan UT", pt = TRUE),
+  param = "tmin", startDate = "2021-01-01",
+  endDate = "2021-12-31"
+)
+head(logan_temp)
+```
+
+```{r}
+ggplot(
+  data = logan_temp,
+  aes(x = date, y = tmin, col = tmin)
+) +
+  geom_line() +
+  labs(
+    title = "Minimum Temperature in Logan, Utah",
+    x = "Date", y = "Minimum Temperature (degC)"
+  ) +
+  stat_smooth(col = "red") +
+  theme_linedraw() +
+  scale_color_viridis_c()
+```
+
+
+<br>
+
+### 5. Multi Point Time Series (3 sites, 2 variables)
+```{r}
+# get point of 3 sites
+sites <- geocode(location = c(
+  "Logan UT", "Salt Lake UT", "Brigham UT"
+), pt = TRUE)
+
+aoi_map(AOI = sites, returnMap = TRUE)
+```
+
+```{r}
+# get precipitation of Utah
+ut_ppt_tmin <- getGridMET(
+  AOI = sites,
+  param = c("prcp", "tmin"), startDate = "2021-01-01",
+  endDate = "2021-01-31"
+)
+```
+
+```{r}
+# extract precipitation and temperature for specified sites from the raster stack
+site_extract <- extract_sites(ut_ppt_tmin, sites, "request")
+
+head(site_extract)
+```
+
+<br>
+
+### 6. Single Layer (2D) (1 variable, 1 day)
+```{r}
+ut_temp_max <- getPRISM(
+  AOI = aoi_get(state = "UT"), param = "tmax",
+  startDate = "2000-05-01"
+)
+
+plot(ut_temp_max$prism_tmax)
+plot(aoi_get(state = "UT")$geometry, add = TRUE)
+```
+<br>
+
+### 7. Multi-layer (2 variables, 1 day) 2D
+```{r}
+grids <- getGridMET(aoi_get(state = "UT"),
+  param = c("tmax", "tmin"),
+  startDate = "2000-05-01"
+)
+plot(stack(grids), main = c("Min Temperature", "Max Temperture"))
+```
+
+<br>
+
+### 8. Multi-Cube 4D (3 variables, 3 day)
+```{r}
+grids <- getGridMET(aoi_get(state = "UT"),
+  param = c("tmax", "prcp", "srad"),
+  startDate = "2018-10-10",
+  endDate = "2018-10-11"
+)
+
+plot(stack(grids))
+```
+
+```{r}
+# use correct location name
+JC <- geocode(event = "Jose Cuervo", pt = TRUE)
+aoi_map(JC, returnMap = TRUE)
+```
