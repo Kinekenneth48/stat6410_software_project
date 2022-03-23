@@ -99,7 +99,7 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 logan_temp <- getPRISM(
   AOI = geocode(location = "Logan UT", pt = TRUE),
   param = "tmin", startDate = "2021-01-01",
-  endDate = "2021-12-31"
+  endDate = "2021-1-15"
 )
 head(logan_temp)
 ```
