@@ -115,7 +115,7 @@ ggplot(
 ```{r}
 # get point of 3 sites
 sites <- geocode(location = c(
-  "Logan UT", "Salt Lake UT", "Brigham UT"
+  "Logan UT", "Salt Lake UT", "Brigham City UT"
 ), pt = TRUE)
 
 aoi_map(AOI = sites, returnMap = TRUE)
@@ -157,7 +157,7 @@ grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "tmin"),
   startDate = "2000-05-01"
 )
-plot(stack(grids), main = c("Min Temperature", "Max Temperture"))
+plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 ```
 
 <br>
@@ -169,6 +169,5 @@ grids <- getGridMET(aoi_get(state = "UT"),
   startDate = "2018-10-10",
   endDate = "2018-10-11"
 )
-
-plot(stack(grids))
+plot(raster::stack(grids))
 ```

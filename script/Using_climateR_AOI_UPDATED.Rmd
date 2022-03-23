@@ -168,7 +168,7 @@ grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "tmin"),
   startDate = "2000-05-01"
 )
-plot(stack(grids), main = c("Min Temperature", "Max Temperture"))
+plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 ```
 
 <br>
@@ -181,7 +181,7 @@ grids <- getGridMET(aoi_get(state = "UT"),
   endDate = "2018-10-11"
 )
 
-plot(stack(grids))
+plot(raster::stack(grids))
 ```
 
 
