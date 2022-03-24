@@ -5,8 +5,19 @@ output:
   html_notebook: default
 ---
 
+### Introduction
+Kenneth's story
 
 
+#### Introduction to AOI and climateR package
+Scout
+
+
+### Advantages of  AOI and climateR package
+Paul
+
+### AOI Usage
+ Paul and Scout start
 ### 1. Load libraries
 ```{r }
 # INSTALL
@@ -23,7 +34,7 @@ library(leaflet.extras)
 
 <br>
 
-## AOI Usage
+
 ### 2. Geocode locations 
 ```{r}
 # get point geometry of Logan
@@ -51,12 +62,6 @@ logan <- geocode(location = "Logan UT", pt = TRUE)
 aoi_map(AOI = logan, returnMap = TRUE)
 ```
 
-```{r}
-# LIVE EXAMPLE
- <- geocode(event = "", pt = TRUE)
-
-aoi_map(,returnMap = TRUE)
-```
 
 ```{r}
 # Interactively draw an Area of Interest
@@ -97,8 +102,9 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 
 <br>
 
+Paul and Scout end
 
-## climateR Usage
+### climateR Usage
 ### 4. Point Based Time Series (1 site , 1 variable) 1D
 ```{r}
 # get minimum temperature from PRSIM
@@ -110,20 +116,7 @@ logan_temp <- climateR::getPRISM(
 head(logan_temp)
 ```
 
-```{r}
-ggplot(
-  data = logan_temp,
-  aes(x = date, y = tmin, col = tmin)
-) +
-  geom_line() +
-  labs(
-    title = "Minimum Temperature in Logan, Utah",
-    x = "Date", y = "Minimum Temperature (degC)"
-  ) +
-  stat_smooth(col = "red") +
-  theme_linedraw() +
-  scale_color_viridis_c()
-```
+
 
 
 <br>
