@@ -92,6 +92,7 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 
 <br>
 
+
 ## climateR Usage
 ### 4. Point Based Time Series (1 site , 1 variable) 1D
 ```{r}
@@ -99,7 +100,7 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 logan_temp <- getPRISM(
   AOI = geocode(location = "Logan UT", pt = TRUE),
   param = "tmin", startDate = "2021-01-01",
-  endDate = "2021-1-15"
+  endDate = "2021-12-31"
 )
 head(logan_temp)
 ```
@@ -125,7 +126,7 @@ ggplot(
 ### 5. Multi Point Time Series (3 sites, 2 variables)
 ```{r}
 # get point of 3 sites
-sites <- geocode(location = c(
+sites <- AOI::geocode(location = c(
   "Logan UT", "Salt Lake UT", "Brigham UT"
 ), pt = TRUE)
 
@@ -133,7 +134,7 @@ aoi_map(AOI = sites, returnMap = TRUE)
 ```
 
 ```{r}
-# get precipitation of Utah
+# get precipitation and min temp from GridMET
 ut_ppt_tmin <- getGridMET(
   AOI = sites,
   param = c("prcp", "tmin"), startDate = "2021-01-01",
@@ -148,33 +149,24 @@ site_extract <- extract_sites(ut_ppt_tmin, sites, "request")
 head(site_extract)
 ```
 
+
 <br>
 
-### 6. Single Layer (2D) (1 variable, 1 day)
+### 6. Multi-layer (2 variables, 1 day) 2D
 ```{r}
-ut_temp_max <- getPRISM(
-  AOI = aoi_get(state = "UT"), param = "tmax",
-  startDate = "2000-05-01"
-)
-
-plot(ut_temp_max$prism_tmax)
-plot(aoi_get(state = "UT")$geometry, add = TRUE)
-```
-<br>
-
-### 7. Multi-layer (2 variables, 1 day) 2D
-```{r}
+# get max and min temp  rasters from GridMET
 grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "tmin"),
-  startDate = "2000-05-01"
+  startDate = "2000-01-01"
 )
 plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 ```
 
 <br>
 
-### 8. Multi-Cube 4D (3 variables, 3 day)
+### 7. Multi-Cube 4D (3 variables, 3 day)
 ```{r}
+# get max and min temp  rasters from GridMET for multi-days
 grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "prcp", "srad"),
   startDate = "2018-10-10",
