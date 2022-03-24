@@ -9,6 +9,11 @@ output:
 
 ### 1. Load libraries
 ```{r }
+# INSTALL
+#remotes::install_github("mikejohnson51/AOI")
+#remotes::install_github("mikejohnson51/climateR")
+
+#load library
 library(sf)
 library(climateR)
 library(AOI)
@@ -97,8 +102,8 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 ### 4. Point Based Time Series (1 site , 1 variable) 1D
 ```{r}
 # get minimum temperature from PRSIM
-logan_temp <- getPRISM(
-  AOI = geocode(location = "Logan UT", pt = TRUE),
+logan_temp <- climateR::getPRISM(
+  AOI = AOI::geocode(location = "Logan UT", pt = TRUE),
   param = "tmin", startDate = "2021-01-01",
   endDate = "2021-12-31"
 )
@@ -130,7 +135,6 @@ sites <- AOI::geocode(location = c(
   "Logan UT", "Salt Lake UT", "Brigham UT"
 ), pt = TRUE)
 
-aoi_map(AOI = sites, returnMap = TRUE)
 ```
 
 ```{r}
@@ -152,7 +156,7 @@ head(site_extract)
 
 <br>
 
-### 6. Multi-layer (2 variables, 1 day) 2D
+### 6. Multi-layer raster (2 variables, 1 day) 2D
 ```{r}
 # get max and min temp  rasters from GridMET
 grids <- getGridMET(aoi_get(state = "UT"),
