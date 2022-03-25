@@ -104,7 +104,8 @@ aoi_map(AOI = ut_aoi, returnMap = TRUE)
 Paul and Scout end
 
 ### climateR Usage
-### 4. Point Based Time Series (1 site , 1 variable) 1D
+### 4. Point Based Time Series 
+In this example, we will show how to download a point based time series with a single climate data for a specified location. For this example, we want to get the minimum temperature of Logan, UT from the PRISM climate source. PRISM is a dataset of daily high-spatial resolution (4-km) surface meteorological data covering the contiguous US from 1981-present. Using the getPRISM function, we specify our area of interest(Logan, UT), the start and end time, and the minimum temperature as the parameter. 
 ```{r}
 # get minimum temperature from PRSIM
 logan_temp <- climateR::getPRISM(
@@ -120,35 +121,36 @@ head(logan_temp)
 
 <br>
 
-### 5. Multi Point Time Series (3 sites, 2 variables)
+### 5. Multi Point Time Series 
+In this section of the workflow, we will show how to download multi point times series of climate data. 
+For this example, we will download precipitation and minim temperature for Logan, Salt Lake, and Brigham in Utah from the GridMET climate source. GridMET is a dataset of daily high-spatial resolution (4-km) surface meteorological data covering the contiguous US from 1979-yesterday. First, we will use the **geocode** function to create an sf object of point geometry for the specified locations. Next, we will feed the **getGridMET** with our defined sf object and specify our climate type along with the date range. The **getGridMET** will return a list of two raster files representing precipitation and minimum temperature. Finally, we use the **extract_sites** to extract the climate data for the locations, which returns a list.
 ```{r}
 # get point of 3 sites
 sites <- AOI::geocode(location = c(
   "Logan UT", "Salt Lake UT", "Brigham UT"
 ), pt = TRUE)
 
-```
 
-```{r}
 # get precipitation and min temp from GridMET
 ut_ppt_tmin <- getGridMET(
   AOI = sites,
   param = c("prcp", "tmin"), startDate = "2021-01-01",
   endDate = "2021-01-31"
 )
-```
 
-```{r}
+
 # extract precipitation and temperature for specified sites from the raster stack
 site_extract <- extract_sites(ut_ppt_tmin, sites, "request")
 
-head(site_extract)
+head(site_extract$gridmet_prcp, n=5)
+head(site_extract$gridmet_tmin, n=5)
 ```
 
 
 <br>
 
-### 6. Multi-layer raster (2 variables, 1 day) 2D
+### 6. Multi-layer raster 
+In this section of the workflow, we show how to download a multi-layer raster file from the GridMET climate source. Using **getGridMET** function we will define the area of interest, the climate parameter and the date range. The difference example 4 and this example is the type of sf object fed to the **getGridMET**. In this example since we want a raster file we defined the our of interest as a polygon. Below is the plot of the rasters of minimum and maximum temperature for the state of Utah for January 1, 2000. 
 ```{r eval=FALSE, include=FALSE}
 # get max and min temp  rasters from GridMET
 grids <- getGridMET(aoi_get(state = "UT"),
@@ -158,18 +160,5 @@ grids <- getGridMET(aoi_get(state = "UT"),
 plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 ```
 
-<br>
-
-### 7. Multi-Cube 4D (3 variables, 3 day)
-```{r eval=FALSE, include=FALSE}
-# get max and min temp  rasters from GridMET for multi-days
-grids <- getGridMET(aoi_get(state = "UT"),
-  param = c("tmax", "prcp", "srad"),
-  startDate = "2018-10-10",
-  endDate = "2018-10-11"
-)
-
-plot(raster::stack(grids))
-```
 
 
