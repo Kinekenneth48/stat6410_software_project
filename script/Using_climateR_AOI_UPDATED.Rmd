@@ -6,7 +6,7 @@ output:
 ---
 
 ### Introduction
-Kenneth's story
+A climatic data element is a measured parameter which helps to specify the climate of a specific location or region, such as precipitation, temperature, wind speed and humidity. Raster data models(files) are one way of storing climate data. These raster files turn to get large in storage size as the dimensional increases with time, multiple variables, and multiple models. Rarely, do we need all the data stored in the raster files. 
 
 
 #### Introduction to AOI and climateR package
