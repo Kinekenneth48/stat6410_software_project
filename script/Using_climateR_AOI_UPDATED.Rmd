@@ -2,12 +2,11 @@
 title: "Using the climateR and AOI package"
 author: "Kenneth Pomeyie, Scout Jarman, Paul Gaona-Partida"
 output:
-  html_notebook: default
+  pdf_document: default
 ---
 
 ### Introduction
-A climatic data element is a measured parameter which helps to specify the climate of a specific location or region, such as precipitation, temperature, wind speed and humidity. Raster data models(files) are one way of storing climate data. These raster files turn to get large in storage size as the dimensional increases with time, multiple variables, and multiple models. Rarely, do we need all the data stored in the raster files. 
-
+A climatic data element is a measured parameter that helps to specify the climate information of a specific location or region, such as precipitation, temperature, wind speed, and humidity. Raster data models(files) are one way of storing climate data in pixels. The size of these raster files tends to get large as dimensionality increases with time, multiple variables, and multiple models. In most cases, only a small amount of information is needed from these files. The hard way to extract site-specific climate information from raster files involves downloading the files and extracting the required information individually to reduce size. However, this data extraction method is inefficient and memory-limited because R loads everything in RAM. This vignette shows how the climateR and AOI packages can be used to call specific climate data more efficiently.
 
 #### Introduction to AOI and climateR package
 Scout
@@ -86,7 +85,7 @@ cache_aoi
 
 ```{r}
 # map area of interest
-aoi_map(AOI = logan_aoi, returnMap = TRUE)
+aoi_map(AOI = cache_aoi, returnMap = TRUE)
 ```
 
 ```{r}
@@ -150,7 +149,7 @@ head(site_extract)
 <br>
 
 ### 6. Multi-layer raster (2 variables, 1 day) 2D
-```{r}
+```{r eval=FALSE, include=FALSE}
 # get max and min temp  rasters from GridMET
 grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "tmin"),
@@ -162,7 +161,7 @@ plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 <br>
 
 ### 7. Multi-Cube 4D (3 variables, 3 day)
-```{r}
+```{r eval=FALSE, include=FALSE}
 # get max and min temp  rasters from GridMET for multi-days
 grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "prcp", "srad"),
