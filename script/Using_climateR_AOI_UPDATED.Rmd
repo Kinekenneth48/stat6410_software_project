@@ -31,6 +31,7 @@ How to install AOI and climateR from github and load library packages that will 
 #remotes::install_github("mikejohnson51/climateR")
 
 #load library
+library(raster)
 library(sf)
 library(climateR)
 library(AOI)
@@ -169,13 +170,13 @@ head(site_extract$gridmet_tmin, n=5)
 
 ### 6. Multi-layer raster 
 In this section of the workflow, we show how to download a multi-layer raster file from the GridMET climate source. Using **getGridMET** function we will define the area of interest, the climate parameter and the date range. The difference example 4 and this example is the type of sf object fed to the **getGridMET**. In this example since we want a raster file we defined the our of interest as a polygon. Below is the plot of the rasters of minimum and maximum temperature for the state of Utah for January 1, 2000. 
-```{r eval=FALSE, include=FALSE}
+```{r echo=TRUE}
 # get max and min temp  rasters from GridMET
 grids <- getGridMET(aoi_get(state = "UT"),
   param = c("tmax", "tmin"),
   startDate = "2000-01-01"
 )
-plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
+raster::plot(raster::stack(grids), main = c("Min Temperature", "Max Temperture"))
 ```
 
 
